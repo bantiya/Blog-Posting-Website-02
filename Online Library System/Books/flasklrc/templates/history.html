@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1 class="center"> Books History </h1>
+    <article class="media content-section">
+        <table class="highlight striped centered">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Gnumber</th>
+                    <th>Date Issued</th>
+                    <th>Date Returned</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td><a class="article-title" href="{{ url_for('book_data', ISBN=post.ISBN) }}">{{ post.ISBN }}</a></td>
+                        <td><a class="article-title" href="{{ url_for('stud_data', gnumber=post.gnumber) }}">{{ post.gnumber }}</a></td>
+                        <td>{{ post.date_issued.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ post.date_returned.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock content %}

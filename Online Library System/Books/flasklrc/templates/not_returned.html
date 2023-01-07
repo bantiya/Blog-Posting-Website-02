@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1 class="center"> Books not received </h1>
+    <article class="media content-section">
+        <table class="highlight striped centered">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Gnumber</th>
+                    <th>Date Issued</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for check_in in posts %}
+                    <tr>
+                        <td><a class="article-title" href="{{ url_for('book_data', ISBN=check_in.ISBN) }}">{{ check_in.ISBN }}</a></td>
+                        <td><a class="article-title" href="{{ url_for('stud_data', gnumber=check_in.gnumber) }}">{{ check_in.gnumber }}</a></td>
+                        <td>{{ check_in.date_issued.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock content %}

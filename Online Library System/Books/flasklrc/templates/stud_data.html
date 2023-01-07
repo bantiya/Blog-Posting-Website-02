@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <h3>Name = {{ name }}</h3>
+        <br>
+        <h3>G number = {{ gnumber }}</h3>
+        <br>
+        <h3>Email = {{ email }}</h3>
+    </div>
+
+    <h1 class="center"> Books Not Returned </h1>
+    <article class="media content-section">
+        <table class="highlight striped centered">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Date Issued</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for check_in in check_ins %}
+                    <tr>
+                        <td>{{check_in.ISBN}}</td>
+                        <td>{{ check_in.date_issued.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+
+    <h1 class="center"> Books Returned </h1>
+    <article class="media content-section">
+        <table class="highlight striped centered">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Date Issued</th>
+                    <th>Date Returned</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for check_out in check_outs %}
+                    <tr>
+                        <td>{{check_out.ISBN}}</td>
+                        <td>{{ check_out.date_issued.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ check_out.date_returned.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock content %}
